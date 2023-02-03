@@ -86,16 +86,16 @@ ctld.enabledFOBBuilding = true -- if true, you can load a crate INTO a C-130 tha
 -- In future i'd like it to be a FARP but so far that seems impossible...
 -- You can also enable troop Pickup at FOBS
 
-ctld.cratesRequiredForFOB = 1 -- The amount of crates required to build a FOB. Once built, helis can spawn crates at this outpost to be carried and deployed in another area.
+ctld.cratesRequiredForFOB = 2 -- The amount of crates required to build a FOB. Once built, helis can spawn crates at this outpost to be carried and deployed in another area.
 -- The large crates can only be loaded and dropped by large aircraft, like the C-130 and listed in ctld.vehicleTransportEnabled
 -- Small FOB crates can be moved by helicopter. The FOB will require ctld.cratesRequiredForFOB larges crates and small crates are 1/3 of a large fob crate
 -- To build the FOB entirely out of small crates you will need ctld.cratesRequiredForFOB * 3
 
 ctld.troopPickupAtFOB = true -- if true, troops can also be picked up at a created FOB
 
-ctld.buildTimeFOB = 30 --time in seconds for the FOB to be built
+ctld.buildTimeFOB = 60 --time in seconds for the FOB to be built
 
-ctld.crateWaitTime = 5 -- time in seconds to wait before you can spawn another crate
+ctld.crateWaitTime = 60 -- time in seconds to wait before you can spawn another crate
 
 ctld.forceCrateToBeMoved = false -- a crate must be picked up at least once and moved before it can be unpacked. Helps to reduce crate spam
 
@@ -566,8 +566,9 @@ ctld.spawnableCrates = {
         
         { weight = 800, desc = "FOB 建造箱", unit = "FOB" }, -- Builds a FOB! - requires 3 * ctld.cratesRequiredForFOB
     
-        { weight = 253, desc = "S-200维修/补给车", unit = "S-200 Repair", side = 1, cratesRequired = 1 }, --TODO 别忘了加维修车
+        --{ weight = 253, desc = "S-200维修/补给车", unit = "S-200 Repair", side = 1, cratesRequired = 1 }, --TODO 别忘了加维修车
         { weight = 590, desc = "山毛榉维修/补给车", unit = "BUK Repair", side = 1, cratesRequired = 1 },
+        { weight = 590, desc = "道尔维修/补给车", unit = "Tor Repair", side = 1, cratesRequired = 1 },
         { weight = 590, desc = "通古斯卡维修/补给车", unit = "SA19 Repair", side = 1, cratesRequired = 1 },
         },
 
@@ -584,8 +585,12 @@ ctld.spawnableCrates = {
         { weight = 549, desc = "9K330道尔/SA-15", unit = "9K330SA-15", side = 1, cratesRequired = 2 },
         -- END of Tor
 
+        -- SA11
+        { weight = 549, desc = "9K37山毛榉/SA-11", unit = "9K37SA-11", side = 1, cratesRequired = 3 },
+        -- END of SA11
+
         -- S-200 System
-        { weight = 551, desc = "S-200安加拉河/SA-5", unit = "S-200SA-5", side = 1, cratesRequired = 3 }, --TODO 2.像这样填写就可以用两箱生成S-200
+        --{ weight = 551, desc = "S-200安加拉河/SA-5", unit = "S-200SA-5", side = 1, cratesRequired = 3 }, --TODO 2.像这样填写就可以用两箱生成S-200
         -- END of S-200
         
     },
@@ -1430,7 +1435,7 @@ ctld.AASystemTemplate = {
         repair = "Patriot Repair",
     },
 	{
-        name = "9K37山毛榉/SA-11",
+        name = "9K37/SA-11",
         count = 3,
         parts = {
             {name = "SA-11 Buk LN 9A310M1", desc = "BUK Launcher" , launcher = true},
@@ -1438,6 +1443,7 @@ ctld.AASystemTemplate = {
             {name = "SA-11 Buk SR 9S18M1", desc = "BUK Search Radar"},
         },
         repair = "BUK Repair",
+        core = "9K37SA-11",
     },
     {
         name = "KUB AA System",
