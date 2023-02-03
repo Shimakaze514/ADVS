@@ -586,7 +586,7 @@ ctld.spawnableCrates = {
         -- END of Tor
 
         -- SA11
-        { weight = 549, desc = "9K37山毛榉/SA-11", unit = "9K37SA-11", side = 1, cratesRequired = 3 },
+        { weight = 551, desc = "9K37山毛榉/SA-11", unit = "9K37SA-11", side = 1, cratesRequired = 3 },
         -- END of SA11
 
         -- S-200 System
