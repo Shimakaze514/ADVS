@@ -521,7 +521,7 @@ ctld.loadableGroups = {
 --
 ctld.spawnableCrates = {
     -- name of the sub menu on F10 for spawning crates --TODO 这个table控制吊运菜单的内容
-    ["主战坦克与步兵战车"] = {
+    ["主战坦克与步兵战车"] = { --! index 550 & 525
         --crates you can spawn
         -- weight in KG
         -- Desc is the description on the F10 MENU
@@ -545,34 +545,34 @@ ctld.spawnableCrates = {
         
     },
 
-    ["自行火炮"] = {
+    ["自行火炮"] = { --! index:250
         { weight = 255, desc = "M-109 自行榴弹炮", unit = "M-109", side = 2, cratesRequired = 1 },
 
         { weight = 250, desc = "2S19 姆斯塔-S", unit = "SAU Msta", side = 1, cratesRequired = 1 },
     },
 
-    ["轻型轮式与JTAC"] = {
+    ["轻型轮式与JTAC"] = { --! index:500
         { weight = 500, desc = "陶悍马", unit = "M1045 HMMWV TOW"},
-        { weight = 505, desc = "机枪悍马", unit = "M1043 HMMWV Armament"},
+        { weight = 501, desc = "机枪悍马", unit = "M1043 HMMWV Armament"},
         
-        { weight = 520, desc = "JTAC悍马", unit = "Hummer", side = 2, }, -- used as jtac and unarmed, not on the crate list if JTAC is disabled
+        { weight = 502, desc = "JTAC悍马", unit = "Hummer", side = 2, }, -- used as jtac and unarmed, not on the crate list if JTAC is disabled
 
-        { weight = 525, desc = "JTAC吉尔130", unit = "SKP-11", side = 1, }, -- used as jtac and unarmed, not on the crate list if JTAC is disabled
+        { weight = 503, desc = "JTAC吉尔130", unit = "SKP-11", side = 1, }, -- used as jtac and unarmed, not on the crate list if JTAC is disabled
     },
     
-    ["维修/补给/FOB"] = {
-        { weight = 253, desc = "M-818 Ammo Truck", unit = "M 818", side = 2, cratesRequired = 1 },
-        { weight = 252, desc = "Ural-375 Ammo Truck", unit = "Ural-375", side = 1, cratesRequired = 1 },
+    ["维修/补给/FOB"] = { --! index 225 & 800 & 490
+        { weight = 225, desc = "M-818 Ammo Truck", unit = "M 818", side = 2, cratesRequired = 1 },
+        { weight = 226, desc = "Ural-375 Ammo Truck", unit = "Ural-375", side = 1, cratesRequired = 1 },
         
         { weight = 800, desc = "FOB 建造箱", unit = "FOB" }, -- Builds a FOB! - requires 3 * ctld.cratesRequiredForFOB
     
         --{ weight = 253, desc = "S-200维修/补给车", unit = "S-200 Repair", side = 1, cratesRequired = 1 }, --TODO 别忘了加维修车
-        { weight = 590, desc = "山毛榉维修/补给车", unit = "BUK Repair", side = 1, cratesRequired = 1 },
-        { weight = 590, desc = "道尔维修/补给车", unit = "Tor Repair", side = 1, cratesRequired = 1 },
-        { weight = 590, desc = "通古斯卡维修/补给车", unit = "SA19 Repair", side = 1, cratesRequired = 1 },
+        { weight = 490, desc = "山毛榉维修/补给车", unit = "BUK Repair", side = 1, cratesRequired = 1 },
+        { weight = 489, desc = "道尔维修/补给车", unit = "Tor Repair", side = 1, cratesRequired = 1 },
+        { weight = 488, desc = "通古斯卡维修/补给车", unit = "SA19 Repair", side = 1, cratesRequired = 1 },
         },
 
-    ["近程防空"] = {
+    ["近程防空"] = { --! index 400
         { weight = 406, desc = "M6 后卫", unit = "M6 Linebacker", cratesRequired = 1 },
         { weight = 404, desc = "罗兰 ADS", unit = "Roland ADS", cratesRequired = 1 },
 
@@ -580,13 +580,13 @@ ctld.spawnableCrates = {
         { weight = 403, desc = "箭-10M3", unit = "Strela-10M3", cratesRequired = 1 },
         { weight = 399, desc = "9P31箭-1/SA-9", unit = "Strela-1 ", cratesRequired = 1 },
     },
-    ["中远程防空"] = {
+    ["中远程防空"] = { --! index 450
         -- Tor
-        { weight = 549, desc = "9K330道尔/SA-15", unit = "9K330SA-15", side = 1, cratesRequired = 2 },
+        { weight = 449, desc = "9K330道尔/SA-15", unit = "9K330SA-15", side = 1, cratesRequired = 2 },
         -- END of Tor
 
         -- SA11
-        { weight = 551, desc = "9K37山毛榉/SA-11", unit = "9K37SA-11", side = 1, cratesRequired = 3 },
+        { weight = 451, desc = "9K37山毛榉/SA-11", unit = "9K37SA-11", side = 1, cratesRequired = 3 },
         -- END of SA11
 
         -- S-200 System
@@ -3374,9 +3374,9 @@ function ctld.unpackFOBCrates(_crates, _heli)
             if ctld.troopPickupAtFOB == true then
                 table.insert(ctld.builtFOBS, _fob:getName())
 
-                trigger.action.outTextForCoalition(_args[3], "Finished building FOB! Crates and Troops can now be picked up.", 10)
+                trigger.action.outTextForCoalition(_args[3], "FOB建造完毕! 货箱和士兵可以从该处装载.", 10)
             else
-                trigger.action.outTextForCoalition(_args[3], "Finished building FOB! Crates can now be picked up.", 10)
+                trigger.action.outTextForCoalition(_args[3], "FOB建造完毕! 货箱和士兵可以从该处装载.", 10)
             end
         end, { _centroid, _heli:getCountry(), _heli:getCoalition() }, timer.getTime() + ctld.buildTimeFOB)
 
@@ -4369,7 +4369,7 @@ function ctld.spawnCrateGroup(_heli, _positions, _types)
     local _group = {
         ["visible"] = false,
        -- ["groupId"] = _id,
-        ["hidden"] = false,
+        ["hidden"] = false, --! 相当于HiddenOnMap，只有GameMaster看得到
         ["units"] = {},
         --        ["y"] = _positions[1].z,
         --        ["x"] = _positions[1].x,
@@ -4380,7 +4380,7 @@ function ctld.spawnCrateGroup(_heli, _positions, _types)
     if #_positions == 1 then
 
         local _unitId = ctld.getNextUnitId()
-        local _details = { type = _types[1], unitId = _unitId, name = string.format("Unpacked %s #%i", _types[1], _unitId) }
+        local _details = { type = _types[1], unitId = _unitId, name = string.format("已部署 %s #%i", _types[1], _unitId) }
 
         _group.units[1] = ctld.createUnit(_positions[1].x + 5, _positions[1].z + 5, 120, _details)
 
@@ -4389,7 +4389,7 @@ function ctld.spawnCrateGroup(_heli, _positions, _types)
         for _i, _pos in ipairs(_positions) do
 
             local _unitId = ctld.getNextUnitId()
-            local _details = { type = _types[_i], unitId = _unitId, name = string.format("Unpacked %s #%i", _types[_i], _unitId) }
+            local _details = { type = _types[_i], unitId = _unitId, name = string.format("已部署 %s #%i", _types[_i], _unitId) }
 
             _group.units[_i] = ctld.createUnit(_pos.x + 5, _pos.z + 5, 120, _details)
         end
