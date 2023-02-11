@@ -1,14 +1,14 @@
 AGTHR = {} -- DONT REMOVE!
 
 function AGTHR.respawnTHR1()
-    mist.respawnGroup('THR1-1', 120)
-    mist.respawnGroup('THR1-2', 120)
-    mist.respawnGroup('THR1-3', 120)
-    trigger.action.outText('克拉斯诺达尔东北方发现敌人的坦克集结地！', 30)
+    mist.respawnGroup('THR1-1',20)
+    mist.respawnGroup('THR1-2',120)
+    mist.respawnGroup('THR1-3',120)
+    trigger.action.outText('克拉斯诺达尔东北方发现敌人的坦克集结地！',30)
 end
 function AGTHR.respawnTHR2()
-    mist.respawnGroup('THR2', 120)
-    trigger.action.outText('克拉斯诺达尔东方发现敌人的装甲突击旅！', 30)
+    mist.respawnGroup('THR2',120)
+    trigger.action.outText('克拉斯诺达尔东方发现敌人的装甲突击旅！',30)
 end
 
 local Root = missionCommands.addSubMenuForCoalition(coalition.side.BLUE,'开始有威胁区对地任务')
